@@ -20,7 +20,6 @@ exports.signup = async (req, res) => {
   });
 
   let newAccessToken = genAccessToken(email + password, user.salt);
-  res.cookie('accesToken', newAccessToken, { expiresIn: '1d' });
 
   if (user) {
     res.status(201).json({
@@ -46,7 +45,6 @@ exports.signin = async (req, res) => {
   //authenticate
   if (user && (await user.authenticate(password))) {
     let newAccessToken = genAccessToken(email + password, user.salt);
-    res.cookie('accesToken', newAccessToken, { expiresIn: '1d' });
 
     res.json({
       _id: user._id,
@@ -91,7 +89,6 @@ exports.signin = async (req, res) => {
 // };
 
 exports.signout = (req, res) => {
-  res.clearCookie('token');
   res.json({
     message: 'Signout !',
   });

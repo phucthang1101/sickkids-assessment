@@ -1,49 +1,121 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
+import { signin } from '../../actions/userActions';
+import Layout from '../../components/Layout';
+import ErrorMessage from '../../components/ErrorMessage';
+import Loading from '../../components/Loading';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-async function loginUser(credentials) {
- return fetch('http://localhost:8000/api/login', {
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json())
-}
-
-export default function Login(props) {
-  const [username, setUserName] = useState();
+export default function Login() {
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [togglePassword, setTogglePassword] = useState(false);
 
-  const handleSubmit = async e => {
+  const dispatch = useDispatch();
+
+  const userSignIn = useSelector((state) => state.userSignIn);
+  const { loading, error, userInfo } = userSignIn;
+
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard');
+      
+    }
+  }, [navigate,userInfo]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password
-    });
-    props.setToken(token);
-  }
+    dispatch(signin(email, password));
+  };
 
-  return(
-    <div className="login-wrapper">
-      <h1>Please Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={e => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
-  )
+  return (
+    <Layout>
+      <Row className='login_wrapper'>
+        <Col xs={12} md={6} className='login_right_bg_blur d-none d-lg-block'>
+          <div className='login_right_bg_text'>
+            <div className='login-right__logo-wrapper'>
+              <img
+                className='logo'
+                alt='logo'
+                src='images/logo_img_rm_bg.png'
+              />
+            </div>
+            <div className='login-right__slogan'>
+              <h3 className='slogan'>Nurturing the seed</h3>
+            </div>
+          </div>
+        </Col>
+        <Col xs={12} lg={6} className='login_left_form'>
+          <div className='login_left_container'>
+            {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
+            {loading && <Loading />}
+            <h1 className='login_form_title'>Log in</h1>
+            <div className='login_form_wrapper'>
+              <Form onSubmit={handleSubmit}>
+                <div>
+                  <div className='form-input'>
+                    <span className='icon'>
+                      <i className='fa fa-envelope' aria-hidden='true'></i>
+                    </span>
+                    <Form.Control
+                      className='input-field'
+                      type='email'
+                      value={email}
+                      placeholder='Email'
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className='form-input'>
+                    <span className='icon'>
+                      <i className='fa fa-lock' aria-hidden='true'></i>
+                    </span>
+                    <Form.Control
+                      className='input-field'
+                      type={togglePassword ? 'text' : 'password'}
+                      value={password}
+                      placeholder='Password'
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <span className='password-toggle'>
+                      <i
+                        className={
+                          togglePassword ? 'fa fa-eye' : 'fa fa-eye-slash'
+                        }
+                        aria-hidden='true'
+                        onClick={() => setTogglePassword(!togglePassword)}
+                      ></i>
+                    </span>
+                  </div>
+                </div>
+                <Button
+                  variant='primary'
+                  className='login_form_submit_btn'
+                  type='submit'
+                >
+                  Submit
+                </Button>
+              </Form>
+              <Row className='py-3'>
+                <Col className='px-5'>
+                  <div className='straight_line'>
+                    <h3>Or</h3>
+                  </div>
+                  <p className='text-center'>
+                    Don't have account? <Link to='/register'>Signup</Link>
+                  </p>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </Col>
+      </Row>
+    </Layout>
+  );
 }
 
 // Login.propTypes = {

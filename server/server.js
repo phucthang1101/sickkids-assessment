@@ -21,7 +21,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 
 //routes middleware
-app.use('/api', authRoute);
+app.use('/api/auth', authRoute);
 
 // connect to PORT
 const port = process.env.PORT || 8000;

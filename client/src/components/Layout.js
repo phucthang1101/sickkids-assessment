@@ -1,25 +1,24 @@
-import React from "react";
-import { Container, Row } from "react-bootstrap";
-import "./Layout.css";
+import React from 'react';
+import { Container, Row } from 'react-bootstrap';
+import './Layout.css';
+import Header from './Header';
 
-function MainScreen({ children, title }) {
+function Layout({ children, title }) {
   return (
-    <div className="mainback">
-      <Container>
-        <Row>
-          <div className="page">
-            {title && (
-              <>
-                <h1 className="heading">{title}</h1>
-                <hr />
-              </>
-            )}
-            {children}
-          </div>
-        </Row>
-      </Container>
-    </div>
+    <>
+      <div className='mainback'>
+        <Container fluid>
+          {title && (
+            <>
+              <h1 className='heading'>{title}</h1>
+              <hr />
+            </>
+          )}
+          {children}
+        </Container>
+      </div>
+    </>
   );
 }
 
-export default MainScreen;
+export default Layout;

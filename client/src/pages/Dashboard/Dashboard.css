@@ -1,0 +1,24 @@
+.dashboard_wrapper {
+  background-color: #fefbf8;
+  height: 100%;
+  width: 100%;
+}
+.dashboard_container {
+  text-align: center;
+  color: #0053b5;
+  font-weight: 600;
+  padding-top: 5em;
+}
+.dashboard_welcome {
+  font-weight: 600;
+  font-size: 3rem;
+}
+.dashboard_desc {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.dashboard_desc a {
+  cursor: pointer;
+  color: #62979d;
+  text-decoration: underline;
+}
