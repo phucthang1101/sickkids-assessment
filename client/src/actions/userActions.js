@@ -19,14 +19,18 @@ export const signin = (email, password) => async (dispatch) => {
         'Content-type': 'application/json',
       },
     };
-    console.log(`${URL}/api/auth/signin`);
+
     const {data} = await axios.post(
       `${URL}/api/auth/signin`,
       { email, password },
       config
     );
-    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-    localStorage.setItem('userInfo', JSON.stringify(data));
+
+    setTimeout(() => {
+      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+      localStorage.setItem('userInfo', JSON.stringify(data));
+    }, 1000);
+    
   } catch (error) {
     dispatch({
       type: USER_SIGNIN_FAIL,

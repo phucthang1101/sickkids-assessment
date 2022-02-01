@@ -85,6 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .input-field {
   border: 2px solid #eee;
@@ -95,12 +96,16 @@
   display: block;
   width: 100%;
 }
+.invalid-feedback{
+  display: block;
+  font-size: 1.3em;
+}
 .icon {
   position: absolute;
-  left: 15px;
+  left: 12px;
   top: 0;
   font-size: 25px;
-  color: #4b00ff;
+  color: #3068ab;
   height: 100%;
   display: flex;
   align-items: center;

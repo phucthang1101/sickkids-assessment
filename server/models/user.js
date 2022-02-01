@@ -31,7 +31,6 @@ const userSchema = new mongoose.Schema(
     },
     accesToken: {
       type: String,
-      unique: true,
     },
   },
   { timestamps: true }
@@ -42,7 +41,7 @@ userSchema
   .virtual('password')
   .set(function (password) {
     this._password = password;
-    this.salt = uuidv4();
+   // this.salt = uuidv4();
     this.hashed_password = this.encryptString(password);
   })
   .get(function () {

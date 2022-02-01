@@ -7,7 +7,7 @@ function Layout({ children, title }) {
   return (
     <>
       <div className='mainback'>
-        <Container fluid>
+        <Container fluid className='px-0'>
           {title && (
             <>
               <h1 className='heading'>{title}</h1>

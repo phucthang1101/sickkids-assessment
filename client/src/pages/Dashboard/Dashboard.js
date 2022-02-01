@@ -5,6 +5,7 @@ import './Dashboard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout';
+import Header from '../../components/Header';
 
 const Dashboard = () => {
   const userSignIn = useSelector((state) => state.userSignIn);
@@ -19,6 +20,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
+      <Header/>
       <div className='dashboard_wrapper'>
         <Container fluid>
           <Col xs={12} lg={10} className='dashboard_container mx-auto'>
@@ -44,21 +46,21 @@ const Dashboard = () => {
             }
           />
           <FeatureCard
-            title={'Easy to navigate'}
+            title={'Time Efficient'}
             desc={
-              'Quickly navigating and locating developmental strategies by developmental area'
+              'Easily creating a printable developmental support plan without any formatting effort'
             }
           />
           <FeatureCard
-            title={'Easy to navigate'}
+            title={'Family-Friendly'}
             desc={
-              'Quickly navigating and locating developmental strategies by developmental area'
+              "Collaboratively ensuring caregives' expertise and knowledge of the child are reflected in the plan"
             }
           />
           <FeatureCard
-            title={'Easy to navigate'}
+            title={'Portable'}
             desc={
-              'Quickly navigating and locating developmental strategies by developmental area'
+              'Being able to create a plan anywhere by using a mobile device and easily sharing with families'
             }
           />
         </Row>

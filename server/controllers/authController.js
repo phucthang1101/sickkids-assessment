@@ -1,8 +1,9 @@
 const User = require('../models/user');
 const { genAccessToken } = require('../utils/genAccessToken');
+const { v4: uuidv4 } = require('uuid');
 
 exports.signup = async (req, res) => {
-  console.log(req.body);
+  
   const { name, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
@@ -12,14 +13,16 @@ exports.signup = async (req, res) => {
       error: 'User already exists',
     });
   }
-
+  let salt = uuidv4();
+  let accesToken = genAccessToken(email + password, salt);
   const user = await User.create({
     name,
     email,
     password,
+    salt,
+    accesToken
   });
 
-  let newAccessToken = genAccessToken(email + password, user.salt);
 
   if (user) {
     res.status(201).json({
@@ -27,7 +30,7 @@ exports.signup = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
-      accesToken: newAccessToken,
+      accesToken: user.accesToken,
     });
   } else {
     return res.status(400).json({

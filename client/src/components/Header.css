@@ -1,0 +1,31 @@
+.header_navbar {
+  height: 10vh;
+  background: #00234c !important;
+  color: white;
+}
+
+.header_navbar .nav-link{
+    color:white !important;
+}
+.header_nav_logo{
+    width: 20%;
+    height: auto;
+}
+
+/*phone*/
+@media only screen and (max-width: 768px) {
+    .header_navbar{
+        height: 15vh;
+    }
+    .navbar-nav{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .navbar-collapse {
+        display: block;
+        flex-basis: unset;
+        flex-grow: unset;
+        width:20%;
+        align-items: center;
+    }
+}

@@ -9,4 +9,3 @@ exports.genAccessToken = (strToEncode, salt) => {
     return '';
   }
 };
-

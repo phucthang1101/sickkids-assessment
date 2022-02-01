@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import './Login.css';
-import { signin } from '../../actions/userActions';
+import './Register.css';
+import { signin, signup } from '../../actions/userActions';
 import Layout from '../../components/Layout';
 import ErrorMessage from '../../components/ErrorMessage';
 import Loading from '../../components/Loading';
@@ -10,10 +9,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [togglePassword, setTogglePassword] = useState(false);
+  const [name, setName] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
 
   //form validation
   const [errors, setErrors] = useState({});
@@ -29,13 +30,21 @@ export default function Login() {
     if (!password || password === '')
       newErrors.password = 'Please enter a password';
 
+    // confirmPassword errors
+    if(password !== confirmpassword)  
+      newErrors.confirmpassword = 'Passwords do not match';
+
+    // name errors  
+    if (!name || name === '')
+      newErrors.name = 'Please enter a name';
     return newErrors;
   };
 
+
   const dispatch = useDispatch();
 
-  const userSignIn = useSelector((state) => state.userSignIn);
-  const { loading, error, userInfo } = userSignIn;
+  const userSignUp = useSelector((state) => state.userSignUp);
+  const { loading, error, userInfo } = userSignUp;
 
   let navigate = useNavigate();
   useEffect(() => {
@@ -46,16 +55,14 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // get our new errors
+
     const newErrors = findFormErrors();
-    // Conditional logic:
     if (Object.keys(newErrors).length > 0) {
-      // We got errors!
       setErrors(newErrors);
     } else {
-      // No errors! Put any logic here for the form submission!
-      dispatch(signin(email, password));
+      dispatch(signup(name, email, password));
     }
+   
   };
 
   return (
@@ -79,15 +86,14 @@ export default function Login() {
           <div className='login_left_container'>
             {error && <ErrorMessage variant='danger'>{error}</ErrorMessage>}
             {loading && <Loading />}
-            <h1 className='login_form_title'>Log in</h1>
-            <div className='login_form_wrapper'>
+            <h1 className='login_form_title'>Sign Up</h1>
+            <div className='login_form_wrapper register_form_wrapper'>
               <Form onSubmit={handleSubmit}>
                 <div>
                   <div className='form-input'>
                     <span className='icon'>
                       <i className='fa fa-envelope' aria-hidden='true'></i>
                     </span>
-
                     <Form.Control
                       className='input-field'
                       type='email'
@@ -102,6 +108,22 @@ export default function Login() {
                   </Form.Control.Feedback>
                   <div className='form-input'>
                     <span className='icon'>
+                      <i className='fa fa-user-circle' aria-hidden='true'></i>
+                    </span>
+                    <Form.Control
+                      className='input-field'
+                      type='text'
+                      value={name}
+                      placeholder='Name'
+                      onChange={(e) => setName(e.target.value)}
+                      isInvalid={!!errors.name}
+                    />
+                  </div>
+                  <Form.Control.Feedback type='invalid'>
+                    {errors.name}
+                  </Form.Control.Feedback>
+                  <div className='form-input'>
+                    <span className='icon'>
                       <i className='fa fa-lock' aria-hidden='true'></i>
                     </span>
                     <Form.Control
@@ -112,7 +134,31 @@ export default function Login() {
                       onChange={(e) => setPassword(e.target.value)}
                       isInvalid={!!errors.password}
                     />
-
+                    <span className='password-toggle'>
+                      <i
+                        className={
+                          togglePassword ? 'fa fa-eye' : 'fa fa-eye-slash'
+                        }
+                        aria-hidden='true'
+                        onClick={() => setTogglePassword(!togglePassword)}
+                      ></i>
+                    </span>
+                  </div>
+                  <Form.Control.Feedback type='invalid'>
+                    {errors.password}
+                  </Form.Control.Feedback>
+                  <div className='form-input'>
+                    <span className='icon'>
+                      <i className='fa fa-keyboard-o' aria-hidden='true'></i>
+                    </span>
+                    <Form.Control
+                      className='input-field'
+                      type={togglePassword ? 'text' : 'password'}
+                      value={confirmpassword}
+                      placeholder='Confirm password'
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      isInvalid={!!errors.confirmpassword}
+                    />
                     <span className='password-toggle'>
                       <i
                         className={
@@ -141,7 +187,7 @@ export default function Login() {
                     <h3>Or</h3>
                   </div>
                   <p className='text-center'>
-                    Don't have account? <Link to='/register'>Signup</Link>
+                    Have an account? <Link to='/login'>Signin</Link>
                   </p>
                 </Col>
               </Row>

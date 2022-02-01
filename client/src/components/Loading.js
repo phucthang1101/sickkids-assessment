@@ -1,25 +1,28 @@
-import React from "react";
-import { Spinner } from "react-bootstrap";
+import React from 'react';
+import { Modal, Spinner } from 'react-bootstrap';
 
 function Loading({ size = 100 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100%",
-      }}
+    <Modal centered show={true} backdrop='static' keyboard={false} 
     >
-      <Spinner
+      <div
         style={{
-          width: size,
-          height: size,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          height: '100%',
         }}
-        animation="border"
-      />
-    </div>
+      >
+        <Spinner
+          style={{
+            width: size,
+            height: size,
+          }}
+          animation='border'
+        />
+      </div>
+    </Modal>
   );
 }
 

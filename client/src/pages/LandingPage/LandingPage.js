@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -20,29 +20,32 @@ function LandingPage({ history }) {
     <Layout>
       <Header />
       <div className='main'>
-        <Container>
-          <Row>
+        <Container fluid>
+          <Row className='mx-0'>
             <div className='intro-text'>
-              <div>
-                <h1 className='title'>Welcome to Note Zipper</h1>
-                <p className='subtitle'>One Safe place for all your notes.</p>
-              </div>
-              <div className='buttonContainer'>
-                <Link to='/login'>
-                  <Button size='lg' className='landingbutton'>
-                    Login
-                  </Button>
-                </Link>
-                <Link to='/register'>
-                  <Button
-                    variant='outline-primary'
-                    size='lg'
-                    className='landingbutton'
-                  >
-                    Signup
-                  </Button>
-                </Link>
-              </div>
+              <Col xs={12} lg={5} className='ml-auto'>
+                <div>
+                  <h1 className='title animate-reveal animate-first'>Welcome to Nuturing the Seed</h1>
+                  <p className='subtitle animate-reveal animate-second'>A perfect online developmental planning tool for you.</p>
+                  <div className='buttonContainer animate-reveal animate-third'>
+                  <Link to='/login'>
+                    <Button size='lg' className='landingbutton btn1'>
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to='/register'>
+                    <Button
+                      variant='outline-primary'
+                      size='lg'
+                      className='landingbutton btn2'
+                    >
+                      Signup
+                    </Button>
+                  </Link>
+                </div>
+                </div>
+               
+              </Col>
             </div>
           </Row>
         </Container>
