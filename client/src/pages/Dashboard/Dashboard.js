@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import FeatureCard from '../../components/FeatureCard';
 import './Dashboard.css';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import './Layout.css';
-import Header from './Header';
 
 function Layout({ children, title }) {
   return (

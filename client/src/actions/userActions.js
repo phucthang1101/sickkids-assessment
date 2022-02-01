@@ -10,7 +10,8 @@ import {
 
 import axios from 'axios';
 
-const URL = 'http://localhost:8000';
+//const URL = 'http://localhost:8000';
+const URL = 'https://sickkids-assessment-server.herokuapp.com'
 export const signin = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_SIGNIN_REQUEST });

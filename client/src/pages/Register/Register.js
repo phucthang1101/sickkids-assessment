@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Register.css';
-import { signin, signup } from '../../actions/userActions';
+import { signup } from '../../actions/userActions';
 import Layout from '../../components/Layout';
 import ErrorMessage from '../../components/ErrorMessage';
 import Loading from '../../components/Loading';

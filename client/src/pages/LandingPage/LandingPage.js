@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,15 +6,9 @@ import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import './LandingPage.css';
 
-function LandingPage({ history }) {
+function LandingPage() {
   const userSignIn = useSelector((state) => state.userSignIn);
   const { userInfo } = userSignIn;
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     history.push("/mynotes");
-  //   }
-  // }, [history, userInfo]);
 
   return (
     <Layout>

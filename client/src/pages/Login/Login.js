@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import './Login.css';
 import { signin } from '../../actions/userActions';
 import Layout from '../../components/Layout';
@@ -153,6 +152,3 @@ export default function Login() {
   );
 }
 
-// Login.propTypes = {
-//   setToken: PropTypes.func.isRequired
-// };

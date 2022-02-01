@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import {
   Container,
-  Form,
-  FormControl,
   Nav,
   Navbar,
   NavDropdown,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import {} from 'react-router-dom';
 import { logout } from '../actions/userActions';
 import './Header.css';
 
@@ -35,25 +32,14 @@ function Header() {
       <Container>
         <Navbar.Brand href='/'>
           <div>
-            <img src='/images/logo_img_rm_bg.png' className='header_nav_logo mr-3' />
+            <img src='/images/logo_img_rm_bg.png' className='header_nav_logo mr-3' alt='logo'/>
             Nurturing the Seed
           </div>
         </Navbar.Brand>
 
-        {/* <Navbar.Toggle aria-controls='responsive-navbar-nav' /> */}
+       
         <Navbar.Collapse className='show' id='responsive-navbar-nav'>
-          {/* <Nav className='m-auto'>
-            {userInfo && (
-              <Form inline>
-                <FormControl
-                  type='text'
-                  placeholder='Search'
-                  className='mr-sm-2'
-                  onChange={(e) => console.log(e.target.value)}
-                />
-              </Form>
-            )}
-          </Nav> */}
+         
           <Nav className='ml-auto'>
             {userInfo ? (
               <>

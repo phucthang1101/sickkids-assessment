@@ -1,6 +1,6 @@
 import React from 'react';
 import './FeatureCard.css';
-import { Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 const FeatureCard = (props) => {
   return (
