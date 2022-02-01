@@ -1,7 +1,7 @@
 # Sickkids Assignment | [Live Demo](https://thangtran-sickkids.netlify.app/) | 🌱
 
 <div align="text-align:center">
-  <img src="./public/static/images/readme-welcome.PNG" width="1024px">
+  <img src="./client/public/images/readme-preview.PNG" width="1024px">
 </div>
 
 - The live version of this app can be found [here](https://thangtran-sickkids.netlify.app/)
