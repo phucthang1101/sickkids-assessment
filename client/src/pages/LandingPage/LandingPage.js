@@ -1,14 +1,13 @@
 import React from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import './LandingPage.css';
 
 function LandingPage() {
-  const userSignIn = useSelector((state) => state.userSignIn);
-  const { userInfo } = userSignIn;
+  // const userSignIn = useSelector((state) => state.userSignIn);
+  // const { userInfo } = userSignIn;
 
   return (
     <Layout>
